@@ -7,23 +7,50 @@ import { makeRequest } from '../../core/utils/request';
 const Search = () => {
 
     const [profile, setProfile] = useState<Profile>();
+    const [repository, setRepository] = useState('');
+    let INIT_URL;
+    
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRepository(event.target.value);
+    }
 
-    console.log(profile);
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
-    useEffect(() => {
+        makeRequest({url: `/${repository}`})
+        .then(response => setProfile(response.data));
+    }
+    
+    
+
+    /*useEffect(() => {
         makeRequest({ url: '/thaisamorandini89'})
         .then(response => setProfile(response.data));
-    }, [])
+    }, [])*/
 
     return (
         <div>
-            <SearchCard title="Encontre um perfil Github">
-                <div className="row">
-                    <div className="col-12">
-                        <input type="text" className="form-control" placeholder="Usuário Github" />
+            <form onSubmit={handleSubmit}>
+                <SearchCard title="Encontre um perfil Github">
+
+                    <div className="row">
+                        <div className="col-12">
+                            <input 
+                                value={repository}
+                                type="text" 
+                                className="form-control" 
+                                placeholder="Usuário Github" 
+                                onChange={handleOnChange}/>
+                        </div>
+                        <div className="base-form-actions">
+                            <button className="btn btn-primary btn-icon btn-text">
+                                Encontrar
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </SearchCard>
+
+                </SearchCard>
+            </form>
             <div className="card-base border-radius-10 detail-content">
                 <div className="col-2">
                    <img src={profile?.avatar_url} alt={profile?.avatar_url} className="tamanho-imagem"/> 
