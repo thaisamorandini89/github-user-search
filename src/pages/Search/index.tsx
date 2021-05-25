@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 import SearchCard from './SearchCard';
-import './styles.scss';
+import Button from '../../core/components/Button';
 import { Profile } from '../../core/types/profile';
 import { makeRequest } from '../../core/utils/request';
+import './styles.scss';
 
 const Search = () => {
 
     const [profile, setProfile] = useState<Profile>();
     const [repository, setRepository] = useState('');
-    let INIT_URL;
     
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRepository(event.target.value);
@@ -21,13 +22,6 @@ const Search = () => {
         .then(response => setProfile(response.data));
     }
     
-    
-
-    /*useEffect(() => {
-        makeRequest({ url: '/thaisamorandini89'})
-        .then(response => setProfile(response.data));
-    }, [])*/
-
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -43,9 +37,7 @@ const Search = () => {
                                 onChange={handleOnChange}/>
                         </div>
                         <div className="base-form-actions">
-                            <button className="btn btn-primary btn-icon btn-text">
-                                Encontrar
-                            </button>
+                            <Button text = "Encontrar" />
                         </div>
                     </div>
 
@@ -53,7 +45,7 @@ const Search = () => {
             </form>
             <div className="card-base border-radius-10 detail-content">
                 <div className="col-2">
-                   <img src={profile?.avatar_url} alt={profile?.avatar_url} className="tamanho-imagem"/> 
+                   <img src={profile?.avatar_url} alt={profile?.avatar_url} className="width-photo"/> 
                 </div>
                 <div className="col-9 profile-info-content">
                     <p className="profile-info-title">Informações</p>
@@ -76,7 +68,7 @@ const Search = () => {
                             </li>
                             <li className="profile-info-box">
                                 <p className="title-box">Membro desde:
-                               <span>{profile?.created_at}</span>
+                               <span>{dayjs(profile?.created_at).format('DD/MM/YYYY')}</span>
                                 </p>
                             </li>
                         </ul>
