@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
 import SearchCard from './SearchCard';
 import Button from '../../core/components/Button';
 import { Profile } from '../../core/types/profile';
