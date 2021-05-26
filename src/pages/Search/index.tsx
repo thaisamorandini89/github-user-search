@@ -53,11 +53,14 @@ const Search = () => {
 
                 </SearchCard>
             </form>
-            <div className="card-base border-radius-10 detail-content">
-                {isLoading && <ImageLoader />}
-                {isLoading && <InfoLoader />}
-                {isShow && <SearchInfo profile={profile} />}
-            </div>
+            {isLoading && (
+                <div className="loading-position">
+                    <ImageLoader />
+                    <InfoLoader />
+                </div>
+            )}
+            {isShow && <SearchInfo profile={profile} />}
+
         </div>
     )
 }

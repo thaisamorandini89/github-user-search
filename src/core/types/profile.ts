@@ -5,4 +5,7 @@ export type Profile = {
     location:string;
     created_at: Date;
     avatar_url:string;
+    followers: number;
+    following: number;
+    public_repos: number;
 }

@@ -11,7 +11,7 @@ const ImageLoader = () => (
     foregroundColor="#f5f5f5"
   >
     {/*<rect x="18" y="13" rx="2" ry="2" width="284" height="284" /> */}
-    <rect x="0" y="0" rx="2" ry="2" width="460" height="460" />
+    <rect x="45" y="45" rx="2" ry="2" width="460" height="460" />
   </ContentLoader>
 )
 
